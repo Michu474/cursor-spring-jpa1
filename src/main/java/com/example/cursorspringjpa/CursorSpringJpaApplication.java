@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CursorSpringJpaApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CursorSpringJpaApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CursorSpringJpaApplication.class, args);
+    }
 
 }

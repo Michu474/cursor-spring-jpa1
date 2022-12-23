@@ -13,9 +13,9 @@ public interface IProductService {
 
     Product update(Product product);
 
-    Product updateQ(Product product, Long id);
 
     List<Product> getByExpireTime(int time);
+
     List<Product> getExpiredProducts();
 
     List<Product> getCheaperThan50();

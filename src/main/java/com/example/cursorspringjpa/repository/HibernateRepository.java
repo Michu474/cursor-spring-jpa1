@@ -11,13 +11,13 @@ import java.util.List;
 
 
 @Repository
-public class HibernateRepository  extends RepositoryBase{
+public class HibernateRepository {
 
     @PersistenceContext
     EntityManager manager;
 
     @Transactional
-    public List<Product> selectProductsHib(){
+    public List<Product> selectProductsHib() {
         Query selectAll = manager.createQuery("select p from Product p");
         System.out.println(selectAll.getResultList().toString());
         return selectAll.getResultList();

@@ -7,15 +7,14 @@ import com.example.cursorspringjpa.repository.ProductRepository;
 import com.example.cursorspringjpa.service.IProductService;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class IProductServiceImpl implements IProductService {
 
-    HibernateRepository hibernateRepository= new HibernateRepository();
     private final ProductRepository productRepository;
+    HibernateRepository hibernateRepository = new HibernateRepository();
 
     public IProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
@@ -30,11 +29,10 @@ public class IProductServiceImpl implements IProductService {
     @Override
     public Product getProductById(Long id) {
 
-        if(productRepository.existsById(id)){
-        return productRepository.findProductById(id);
-        }
-        else {
-            throw new ProductNotFoundException("User with id: "+id+" not found!");
+        if (productRepository.existsById(id)) {
+            return productRepository.findProductById(id);
+        } else {
+            throw new ProductNotFoundException("User with id: " + id + " not found!");
         }
     }
 
@@ -50,26 +48,11 @@ public class IProductServiceImpl implements IProductService {
 
 
     @Override
-    @Transactional
-    public Product updateQ(Product product, Long id) {
-        System.out.println("Before Query"+product.toString());
-         productRepository.updateProductsQ(product.getName(),product.getPrice(),product.getDescription(),product.getManufactureCountry(),
-                product.getManufacturedYear(),product.getExpirationYear(),id);
-        return product;
-    }
-
-    @Override
     public List<Product> getByExpireTime(int time) {
         LocalDate dateNow = LocalDate.now();
         int year = dateNow.getYear();
-        return productRepository.getProductsByExpirationYearEquals(time+year);
+        return productRepository.getProductsByExpirationYearEquals(time + year);
     }
-
-//    @Override
-//    public List<Product> updateById(Product updatedProduct) {
-//        return null;
-//    }
-
 
     @Override
     public List<Product> getExpiredProducts() {
@@ -86,9 +69,8 @@ public class IProductServiceImpl implements IProductService {
 
     @Override
     public List<Product> getAllProducts() {
-        return (List<Product>) productRepository.findAll();
+        return productRepository.findAll();
     }
-
 
 
 }

@@ -10,9 +10,10 @@ import java.util.List;
 
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product,Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findProductById(Long id);
+
     List<Product> getProductsByExpirationYearLessThan(int year);
 
     List<Product> getProductsByPriceLessThan(double price);
@@ -23,7 +24,6 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Query("UPDATE Product p SET p.name=:name,p.price=:price,p.description=:description,p.manufactureCountry=:manufactureCountry,p.manufacturedYear=:manufacturedYear,p.expirationYear=:expirationYear WHERE p.id = :id")
     void updateProductsQ(String name, double price, String description, String manufactureCountry,
                          int manufacturedYear, int expirationYear, Long id);
-
 
 
 }
